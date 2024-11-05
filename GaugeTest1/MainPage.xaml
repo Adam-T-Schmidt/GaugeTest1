@@ -10,15 +10,15 @@
         <viewmodels:MainViewModel/>
     </ContentPage.BindingContext>
 
-    <!--<VerticalStackLayout>-->
+    <VerticalStackLayout>
     <!--Padding="30,0"
-            Spacing="25">
-            <Label 
-                Text="Welcome to the Cloud Page!"
+            Spacing="25">-->
+            <!--<Label--> 
+                <!--Text="Welcome to the Cloud Page!"
                 VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-            <Label 
-                x:Name="LocationLabel" 
+                HorizontalOptions="Center" />-->
+            <!--<Label--> 
+                <!--x:Name="LocationLabel" 
                 Text="Location: Not Available" 
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
@@ -46,12 +46,15 @@
 
         <Grid>-->
 
-    <ContentView>
-
+    <!--<ContentView>-->
+        <Label
+         x:Name="BSLabel"
+         Text="Hi">
+        </Label>
 
         <lvc:PieChart
                 Series="{Binding Series}"
-                
+                x:Name="Chart"
                 IsVisible="Visible"
                 HeightRequest="300"
                 WidthRequest="300"
@@ -60,13 +63,13 @@
                 MinValue="0"
                 MaxValue="100">
         </lvc:PieChart>
-    </ContentView>
+    <!--</ContentView>-->
     <!--</Grid>-->
     <!--</ContentPage.Content>-->
 
 
 
-    <!--</VerticalStackLayout>-->
+    </VerticalStackLayout>
 
 
 </ContentPage>

@@ -24,14 +24,20 @@ namespace GaugeTest1
             await Task.Delay (100);
             mainViewModel.InitializeGauge ();
             await Task.Delay (100);
-            InvalidateMeasure ();
+            
+            
 
 
         }
 
-        private void StartLocationUpdates()
+        public void StartLocationUpdates()
         {
             _cts = new CancellationTokenSource ();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                BSLabel.Text = "Fuck"; 
+            });
+
             //GetLocationAsync(_cts.Token);
         }
 
