@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:GaugeTest1.ViewModel"
+             x:Class="GaugeTest1.MainPage"
+             x:DataType="viewmodels:MainViewModel"
+             xmlns:local="clr-namespace:GaugeTest1;assembly=GaugeTest1" 
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <!--<VerticalStackLayout>-->
+    <!--Padding="30,0"
+            Spacing="25">
+            <Label 
+                Text="Welcome to the Cloud Page!"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Label 
+                x:Name="LocationLabel" 
+                Text="Location: Not Available" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontSize="Medium" />-->
+    <!--<Label-->
+    <!--x:Name="AccelerometerLabel" 
+                Text="{Binding AccelerometerLabel}" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontSize="Medium" />-->
+
+
+    <!--<lvc:CartesianChart-->
+    <!--Series="{Binding Series}"
+                HeightRequest="300"
+                WidthRequest="300">
+            </lvc:CartesianChart>-->
+    <!--<Button-->
+    <!--x:Name="click"
+            Text="click"
+            Clicked="click_Clicked"
+                />-->
+    <!--<ContentPage.Conte-->
+    <!--nt>
+
+        <Grid>-->
+
+    <ContentView>
+
+
+        <lvc:PieChart
+                Series="{Binding Series}"
+                
+                IsVisible="Visible"
+                HeightRequest="300"
+                WidthRequest="300"
+                InitialRotation="-225"
+                MaxAngle="270"
+                MinValue="0"
+                MaxValue="100">
+        </lvc:PieChart>
+    </ContentView>
+    <!--</Grid>-->
+    <!--</ContentPage.Content>-->
+
+
+
+    <!--</VerticalStackLayout>-->
+
+
+</ContentPage>
