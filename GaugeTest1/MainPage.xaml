@@ -54,11 +54,19 @@
                             Series="{Binding Series}"
                             ZoomMode="None"
                             XAxes="{Binding XAxes}"
-                            YAxes="{Binding YAxes}">
+                            YAxes="{Binding YAxes}"
+                            AnimationsSpeed="00:00:00.500">
         </lvc:CartesianChart>
-        <!--</ContentView>-->
-    <!--</Grid>-->
-    <!--</ContentPage.Content>-->
+
+        <Label
+            
+            x:Name="GForce"
+            Text = "{Binding GforceText}"
+            HorizontalOptions="Center"
+            FontSize="Large">
+        </Label>
+        
+
 
 
 
