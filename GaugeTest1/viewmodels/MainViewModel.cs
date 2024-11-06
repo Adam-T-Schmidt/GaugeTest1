@@ -7,172 +7,98 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using LiveChartsCore.Defaults;
 
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Maui;
+    using System.Windows.Markup;
+using LiveChartsCore.SkiaSharpView.Painting.Effects;
+
 namespace GaugeTest1.ViewModel;
 
 public partial class MainViewModel : ObservableObject
 {
+    private static ObservableCollection<ObservablePoint> xyCoordinates = new ObservableCollection<ObservablePoint> ();
 
-    public ObservableCollection<float> _accelerometerDataX = new ();
-    //public ObservableCollection<float> _accelerometerDataY = new();
-    //public ObservableCollection<float> _accelerometerDataZ = new();
-    //float myCustomValue; 
 
-    //[ObservableProperty]
-    //ISeries[] Series;
+    public ObservableCollection<ISeries> Series { get; set; } = new ObservableCollection<ISeries>
+    {
+        new LineSeries<ObservablePoint>
+        {
+            Values=xyCoordinates,
+            Fill=null,
+            GeometrySize=0,
+            LineSmoothness=0,
+            Stroke = new SolidColorPaint(SKColors.Blue) { StrokeThickness = 30 }
+
+        }
+    };
+
+    public Axis[] XAxes { get; set; } = new Axis[]
+    {
+        new Axis
+        {
+            Name = "X Axis",
+            NamePaint = new SolidColorPaint(SKColors.Black),
+
+            LabelsPaint = new SolidColorPaint(SKColors.Blue),
+            TextSize = 10,
+            MaxLimit=1.5,
+            MinLimit=-1.5,
+            SeparatorsPaint = new SolidColorPaint(SKColors.LightSlateGray) { StrokeThickness = 2 }
+                }
+    };
+    public Axis[] YAxes { get; set; } = new Axis[]
+    {
+        new Axis
+        {
+            Name = "Y Axis",
+            NamePaint = new SolidColorPaint(SKColors.Black),
+
+            LabelsPaint = new SolidColorPaint(SKColors.Blue),
+            TextSize = 10,
+            MaxLimit=1.5,
+            MinLimit=-1.5,
+            SeparatorsPaint = new SolidColorPaint(SKColors.LightSlateGray) { StrokeThickness = 2 }
+                }
+    };
+
+
+
 
     [ObservableProperty]
-    public IEnumerable<ISeries> series;
-
+    double accX;
     [ObservableProperty]
-    public ObservableValue _gaugeItem;
-
-    //GaugeGenerator.BuildSolidGauge(
-    //    new GaugeItem(30, series =>
-    //    {
-    //        series.Fill = new SolidColorPaint(SKColors.YellowGreen);
-    //        series.DataLabelsSize = 50;
-    //        series.DataLabelsPaint = new SolidColorPaint(SKColors.Red);
-    //        series.DataLabelsPosition = PolarLabelsPosition.ChartCenter;
-    //        series.InnerRadius = 75;
-    //    }
-
-    //    ),
-    //    new GaugeItem(GaugeItem.Background, series =>
-    //    {
-    //        series.InnerRadius = 75;
-    //        series.Fill = new SolidColorPaint(new SKColor(100, 181, 246, 90));
-    //    })); 
-
-
-
-
-
+    double accY;
 
     public MainViewModel()
     {
-
-
-
-
-        //Series = new ISeries[]
-        //{
-        //new ColumnSeries<float>
-        //{
-        //    Values = _accelerometerDataX
-        //}
-        ////    //new ColumnSeries<float>
-        ////    //{
-        ////    //    Values = _accelerometerDataY
-        ////    //},
-        ////    //new ColumnSeries<float>
-        ////    //{
-        ////    //    Values = _accelerometerDataZ
-        ////    //}
-        //};
-
-
-
         StartAccelerometer ();
-        InitializeGauge ();
-        System.Console.WriteLine ("Graph Initialized");
-
     }
-
-
-    public void InitializeGauge()
-    {
-
-        _gaugeItem = new ObservableValue (50);
-        Series = GaugeGenerator.BuildSolidGauge (
-                 new GaugeItem (_gaugeItem, series =>
-                 {
-                     series.Fill = new SolidColorPaint (SKColors.YellowGreen);
-                     series.DataLabelsSize = 50;
-                     series.DataLabelsPaint = new SolidColorPaint (SKColors.Red);
-                     series.DataLabelsPosition = PolarLabelsPosition.ChartCenter;
-                     series.InnerRadius = 75;
-                 }),
-                 new GaugeItem (10, series =>
-                 {
-                     series.InnerRadius = 75;
-                     series.Fill = new SolidColorPaint (new SKColor (100, 181, 246, 90));
-                 }));
-        //System.Console.WriteLine("Graph Initialized Within Function");
-        //System.Console.WriteLine("Gauge: " + GaugeItem.Value);
-    }
-
-
-
-
-    public void UpdateGagueValue(double newValue)
-    {
-        //Series = GaugeGenerator.BuildSolidGauge(
-        //    new GaugeItem(newValue, series =>
-        //    {
-        //        series.Fill = new SolidColorPaint(SKColors.YellowGreen);
-        //        series.DataLabelsSize = 50;
-        //        series.DataLabelsPaint = new SolidColorPaint(SKColors.Red);
-        //        series.DataLabelsPosition = PolarLabelsPosition.ChartCenter;
-        //        series.InnerRadius = 75;
-        //    }
-
-        //    ),
-        //    new GaugeItem(GaugeItem.Background, series =>
-        //    {
-        //        series.InnerRadius = 75;
-        //        series.Fill = new SolidColorPaint(new SKColor(100, 181, 246, 90));
-        //    }));
-        _gaugeItem.Value = newValue;
-
-
-
-        //System.Console.WriteLine("new Graph Value: "+newValue);
-        //System.Console.WriteLine("new Graph Value: " + _gaugeItem.Value);
-
-
-    }
-
-
-
-
 
     private void StartAccelerometer()
     {
         try
         {
             Accelerometer.ReadingChanged += OnAccelerometerReadingChanged;
-            Accelerometer.Start (SensorSpeed.UI);
+            Accelerometer.Start (SensorSpeed.Default);
         }
-        catch (FeatureNotSupportedException)
-        {
-
-        }
-        catch (Exception e)
-        {
-
-        }
-
-
+        catch (FeatureNotSupportedException) { }
+        catch (Exception e) { }
     }
-
-    //AccelerometerLabel.Text = $"X: {reading.Acceleration.X:F2}, Y: {reading.Acceleration.Y:F2}, Z: {reading.Acceleration.Z:F2}";
-
 
     private void OnAccelerometerReadingChanged(object sender, AccelerometerChangedEventArgs e)
     {
+        Console.WriteLine(xyCoordinates.Count);
+        //xyCoordinates.Clear ();
+        xyCoordinates.Add (new ObservablePoint (e.Reading.Acceleration.X, e.Reading.Acceleration.Y));
 
-        double accelerationX = e.Reading.Acceleration.X;
-        //ObservableValue newGaugeValue = new ObservableValue(accelerationX*10);
-        UpdateGagueValue (accelerationX * 10);
-        //float accelerationY = e.Reading.Acceleration.Y;
-        //float accelerationZ = e.Reading.Acceleration.Z;
-        //_accelerometerDataX.Clear ();
-        ////_accelerometerDataY.Clear ();
-        ////_accelerometerDataZ.Clear ();
-        //_accelerometerDataX.Add (accelerationX);
-        //Series.
-        //_accelerometerDataY.Add (accelerationY);
-        //_accelerometerDataZ.Add (accelerationZ);
+        //xyCoordinates[1].Y = e.Reading.Acceleration.Y;
+        //xyCoordinates[1].X = e.Reading.Acceleration.X;
+        if (xyCoordinates.Count >=4)
+        {
+            xyCoordinates.RemoveAt (0);
+
+        }
+
 
 
     }
@@ -184,14 +110,4 @@ public partial class MainViewModel : ObservableObject
     }
 
 
-
-
-
-
-
-
-
-
-
-
-}
+} 

@@ -47,23 +47,16 @@
         <Grid>-->
 
     <!--<ContentView>-->
-        <Label
-         x:Name="BSLabel"
-         Text="Hi">
-        </Label>
 
-        <lvc:PieChart
-                Series="{Binding Series}"
-                x:Name="Chart"
-                IsVisible="Visible"
-                HeightRequest="300"
-                WidthRequest="300"
-                InitialRotation="-225"
-                MaxAngle="270"
-                MinValue="0"
-                MaxValue="100">
-        </lvc:PieChart>
-    <!--</ContentView>-->
+        <lvc:CartesianChart Grid.Row ="1"
+                            HeightRequest="300"
+                            WidthRequest="300"
+                            Series="{Binding Series}"
+                            ZoomMode="None"
+                            XAxes="{Binding XAxes}"
+                            YAxes="{Binding YAxes}">
+        </lvc:CartesianChart>
+        <!--</ContentView>-->
     <!--</Grid>-->
     <!--</ContentPage.Content>-->
 
