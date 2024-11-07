@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using LiveChartsCore;
 using System.Collections.ObjectModel;
 using LiveChartsCore.SkiaSharpView.Extensions;
@@ -8,6 +9,8 @@ using SkiaSharp;
 using LiveChartsCore.Defaults;
 
 using LiveChartsCore.SkiaSharpView;
+using Microcharts;
+using Microcharts.Maui;
 using LiveChartsCore.SkiaSharpView.Maui;
     using System.Windows.Markup;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
@@ -17,10 +20,20 @@ namespace GaugeTest1.ViewModel;
 
 public partial class MainViewModel : ObservableObject
 {
+
+
+
+
+
+
     private static ObservableCollection<ObservablePoint> xyCoordinates = new ObservableCollection<ObservablePoint> ();
 
 
-    public ISeries[] Series { get; set; } = new ISeries[]
+
+
+
+
+    public ISeries[] ScatterSeries { get; set; } = new ISeries[]
     {
         new ScatterSeries<ObservablePoint>
         {
@@ -36,9 +49,7 @@ public partial class MainViewModel : ObservableObject
             // DataLabelsFormatter = (point) => "Fuck"+ point.Coordinate.PrimaryValue.ToString("3")+"G",
             Stroke = new SolidColorPaint(SKColors.Blue) { StrokeThickness = 30 }
 
-        }
-    };
-
+        } };
     public Axis[] XAxes { get; set; } = new Axis[]
     {
         new Axis
@@ -68,19 +79,44 @@ public partial class MainViewModel : ObservableObject
                 }
     };
 
-
+    [ObservableProperty]
+    string gforceText;
 
 
     [ObservableProperty]
-    double accX;
-    [ObservableProperty]
-    double accY;
-    [ObservableProperty]
-    string gforceText; 
+    ChartEntry[] entries = new ChartEntry[]
+{
+
+            new ChartEntry (210)
+            {
+                Label = "Windows",
+                ValueLabel = "210",
+                Color = SKColor.Parse("#2c3e50")
+            },
+                        new ChartEntry (210)
+            {
+                Label = "Mac",
+                ValueLabel = "220",
+                Color = SKColor.Parse("#2c3e60")
+            }
+
+};
+
+
+
+
+
+
+
 
     public MainViewModel()
     {
         StartAccelerometer ();
+
+
+
+
+
     }
 
     private void StartAccelerometer()
@@ -99,14 +135,19 @@ public partial class MainViewModel : ObservableObject
         Console.WriteLine(xyCoordinates.Count);
         //xyCoordinates.Clear();
         xyCoordinates.Add (new ObservablePoint (e.Reading.Acceleration.X, e.Reading.Acceleration.Y));
-
-
         if (xyCoordinates.Count >= 10)
         {
             xyCoordinates.RemoveAt(0);
         }
         GforceText = $"X: {e.Reading.Acceleration.X:F2}, Y: {e.Reading.Acceleration.Y:F2}, Z: {e.Reading.Acceleration.Z:F2}";
     }
+
+    private void createEntriesFromNewAccelerationData(double X, double Y, double Z)
+    {
+
+    }
+
+
     private void StopAccelerometer()
     {
         Accelerometer.Stop ();

@@ -5,7 +5,8 @@
              x:Class="GaugeTest1.MainPage"
              x:DataType="viewmodels:MainViewModel"
              xmlns:local="clr-namespace:GaugeTest1;assembly=GaugeTest1" 
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui">
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui">
     <ContentPage.BindingContext>
         <viewmodels:MainViewModel/>
     </ContentPage.BindingContext>
@@ -47,16 +48,20 @@
         <Grid>-->
 
     <!--<ContentView>-->
-
+        <microcharts:ChartView x:Name="chartView" 
+                                
+                               HeightRequest="300" 
+                               WidthRequest="300" />
         <lvc:CartesianChart Grid.Row ="1"
                             HeightRequest="300"
                             WidthRequest="300"
-                            Series="{Binding Series}"
+                            Series="{Binding ScatterSeries}"
                             ZoomMode="None"
                             XAxes="{Binding XAxes}"
                             YAxes="{Binding YAxes}"
                             AnimationsSpeed="00:00:00.500">
         </lvc:CartesianChart>
+
 
         <Label
             
