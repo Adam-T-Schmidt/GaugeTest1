@@ -1,6 +1,7 @@
 ﻿using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+//using MicroGauge.Maui;
 
 namespace GaugeTest1
 {
@@ -12,6 +13,7 @@ namespace GaugeTest1
             builder
                 .UseSkiaSharp ()
                 .UseMicrocharts()
+                
                 .UseMauiApp<App> ()
                 .ConfigureFonts (fonts =>
                 {

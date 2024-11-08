@@ -15,6 +15,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
+using MicroGauge.Maui;
 
 
 namespace GaugeTest1.ViewModel;

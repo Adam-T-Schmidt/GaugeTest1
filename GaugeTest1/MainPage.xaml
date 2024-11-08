@@ -6,76 +6,62 @@
              x:DataType="viewmodels:MainViewModel"
              xmlns:local="clr-namespace:GaugeTest1;assembly=GaugeTest1" 
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
-             xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui">
+             xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             xmlns:microGauge="clr-namespace:MicroGauge.Maui;assembly=MicroGauge.Maui">
     <ContentPage.BindingContext>
         <viewmodels:MainViewModel/>
     </ContentPage.BindingContext>
 
+
+
     <VerticalStackLayout>
-    <!--Padding="30,0"
-            Spacing="25">-->
-            <!--<Label--> 
-                <!--Text="Welcome to the Cloud Page!"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />-->
-            <!--<Label--> 
-                <!--x:Name="LocationLabel" 
-                Text="Location: Not Available" 
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                FontSize="Medium" />-->
-    <!--<Label-->
-    <!--x:Name="AccelerometerLabel" 
-                Text="{Binding AccelerometerLabel}" 
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" 
-                FontSize="Medium" />-->
-
-
-    <!--<lvc:CartesianChart-->
-    <!--Series="{Binding Series}"
-                HeightRequest="300"
-                WidthRequest="300">
-            </lvc:CartesianChart>-->
-    <!--<Button-->
-    <!--x:Name="click"
-            Text="click"
-            Clicked="click_Clicked"
-                />-->
-    <!--<ContentPage.Conte-->
-    <!--nt>
-
-        <Grid>-->
-
-    <!--<ContentView>-->
-        <microcharts:ChartView x:Name="chartView" 
-                                
-                               HeightRequest="400" 
-                               WidthRequest="400" 
-                               />
-        <lvc:CartesianChart Grid.Row ="1"
-                            HeightRequest="300"
-                            WidthRequest="300"
-                            Series="{Binding ScatterSeries}"
-                            ZoomMode="None"
-                            XAxes="{Binding XAxes}"
-                            YAxes="{Binding YAxes}"
-                            AnimationsSpeed="00:00:00.500">
-        </lvc:CartesianChart>
-
-
-        <Label
+        
+        <microGauge:MauiGaugeRadial
+            Value="15"
+            NeedleBrush="#0088ff"
+            NeedlePivotBrush="#91ccff"
+            NeedlePivotOutlineBrush="white"
+            HeightRequest="400"
+            WidthRequest="400"
+            x:Name="Gauge"
+            MinValue="-2"
+            MaxValue="2"
+            BackingOutlineBrush="#0088ff"
+             BackingBrush ="#011746"
+            BackingStrokeWidth="10"
+            LabelInterval="0.5"
+            LabelFontBrush="White"
+            LabelFontSize="30"
+            LabelFormatString="{}{0:N2}G"
+            ValueFontSize="60"
+            ValueFontBrush="White"
+            ValueFormatString="{}{0:N2}G"
+            TickBrush="White"
+            TickStrokeWidth ="7"
+            MinorTickBrush="White"
+            TickEndExtent ="0.7"
+            MinorTickStrokeWidth="7"
             
+            />
+        
+        <lvc:CartesianChart 
+            Grid.Row ="1"
+            HeightRequest="300"
+            WidthRequest="300"
+            Series="{Binding ScatterSeries}"
+            ZoomMode="None"
+            XAxes="{Binding XAxes}"
+            YAxes="{Binding YAxes}"
+            AnimationsSpeed="00:00:00.500">
+        </lvc:CartesianChart>
+        
+        <Label
             x:Name="GForce"
             Text = "{Binding GforceText}"
             HorizontalOptions="Center"
             FontSize="Large">
         </Label>
         
-
-
-
-
     </VerticalStackLayout>
 
 
