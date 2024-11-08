@@ -72,7 +72,7 @@ namespace GaugeTest1
              * Animations are disabled because this solution re-draws the graph every time.
              * Microcharts are not designed to update this fast, so they include animations that are only designed to draw once.
              * They look good, but for fast re-draws they make the data unreadable.*/
-            chartView.Chart = new RadialGaugeChart () { Entries = entries, AnimationDuration=new TimeSpan(0), IsAnimated=false, MaxValue=2, MinValue=-2};
+            chartView.Chart = new RadialGaugeChart () { Entries = entries, IsAnimated=false, MaxValue=2, MinValue=-2};
         }
         //honestly useless but i'm keeping it here anyway. Sue me
         protected override void OnDisappearing()
