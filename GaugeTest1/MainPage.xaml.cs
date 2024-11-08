@@ -16,13 +16,13 @@ namespace GaugeTest1
     public partial class MainPage : ContentPage
     {
 
-        MauiGaugeRadial RadialGauge = new MauiGaugeRadial
-        {
-            Value = 15.0,
-            NeedleBrush = new SolidColorBrush(Colors.Green),
-            MinValue=-2,
-            MaxValue=2
-        };
+        //MauiGaugeRadial RadialGauge = new MauiGaugeRadial
+        //{
+        //    Value = 15.0,
+        //    NeedleBrush = new SolidColorBrush(Colors.Green),
+        //    MinValue=-2,
+        //    MaxValue=2
+        //};
         //creates a timer with an interval of 100 ms to provide a "reason" for the mainpage to access acceleration data
         private System.Timers.Timer _timer = new(100); 
 
@@ -52,19 +52,7 @@ namespace GaugeTest1
 
             //enables the timer
             _timer.Enabled = true;
-            
-
-            //sets the ObservableCollection entries equal to a new one that contains placeholder "ChartEntry"s
-            //entries = new ObservableCollection<ChartEntry>
-            //{
-            //new ChartEntry(0) { Label = "X", ValueLabel = "", Color = SKColor.Parse("#fa0505") }, //Label = the name of the data set that is shown next to the chart
-            //new ChartEntry(0) { Label = "Y", ValueLabel = "", Color = SKColor.Parse("#0511fa") }, //ValueLabel = the text under the legend label
-            //new ChartEntry(0) { Label = "Z", ValueLabel = "", Color = SKColor.Parse("#15fa05") }  //I'm sure you can figure out what Color is lol
-            //};
-
-            //sets the UI element equal to the recently created ObservableCollection (full of dummy data at this point)
-            //If this isn't done, the app will either crash with an InxeXOutOfRangeException or the gauge will not show up
-            //chartView.Chart = new RadialGaugeChart { Entries = entries }; 
+           
         }
 
         //Every time the timer elapses (100ms pass), do the following:
@@ -73,21 +61,14 @@ namespace GaugeTest1
             //create an array of floats to store accelerometer data, then call the function in MainViewModel to access the data
             float[] accValues = mainViewModel.getAccelerationValues ();
             //RadialGauge.Value = accValues [0];
-            Gauge.Value = accValues [0];
-            
+            Gauge1.Value = accValues [0];
+            Gauge2.Value = accValues[0];
+            Gauge3.Value = accValues[0];
+            Gauge4.Value = accValues[0];
+            Gauge5.Value = accValues[0];
+            Gauge6.Value = accValues[0];
 
-            ////set each of the EXISTING ChartEntry locations in the ObservableCollection "entries" equal to their respective XYZ acceleration values
-            //entries[0] = new ChartEntry (accValues[0]) { Label = "X", ValueLabel = accValues[0].ToString(), Color = SKColor.Parse ("#fa0505")};
-            //entries[1] = new ChartEntry (accValues[1]) { Label = "Y", ValueLabel = accValues[1].ToString (), Color = SKColor.Parse ("#0511fa") };
-            //entries[2] = new ChartEntry (accValues[2]) { Label = "Z", ValueLabel = accValues[2].ToString (), Color = SKColor.Parse ("#15fa05") };
 
-            /* Set the chart equal to a new RadialGaugeChart containing the new information
-             * Animations are disabled because this solution re-draws the graph every time.
-             * Microcharts are not designed to update this fast, so they include animations that are only designed to draw once.
-             * They look good, but for fast re-draws they make the data unreadable.*/
-            //chartView.Chart = new RadialGaugeChart () { Entries = entries, IsAnimated=false, MaxValue=2, MinValue=-2};
-            //chartView.Chart.LabelTextSize = 30;
-            //chartView.Chart.Margin = 0; 
         }
         //honestly useless but i'm keeping it here anyway. Sue me
         protected override void OnDisappearing()

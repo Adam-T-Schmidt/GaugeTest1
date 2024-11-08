@@ -8,61 +8,316 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              xmlns:microGauge="clr-namespace:MicroGauge.Maui;assembly=MicroGauge.Maui">
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewmodels:MainViewModel/>
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
 
 
-    <VerticalStackLayout>
-        
-        <microGauge:MauiGaugeRadial
-            Value="15"
-            NeedleBrush="#0088ff"
-            NeedlePivotBrush="#91ccff"
-            NeedlePivotOutlineBrush="white"
-            HeightRequest="400"
-            WidthRequest="400"
-            x:Name="Gauge"
-            MinValue="-2"
-            MaxValue="2"
-            BackingOutlineBrush="#0088ff"
-             BackingBrush ="#011746"
-            BackingStrokeWidth="10"
-            LabelInterval="0.5"
-            LabelFontBrush="White"
-            LabelFontSize="30"
-            LabelFormatString="{}{0:N2}G"
-            ValueFontSize="60"
-            ValueFontBrush="White"
-            ValueFormatString="{}{0:N2}G"
-            TickBrush="White"
-            TickStrokeWidth ="7"
-            MinorTickBrush="White"
-            TickEndExtent ="0.7"
-            MinorTickStrokeWidth="7"
-            
-            />
-        
-        <lvc:CartesianChart 
-            Grid.Row ="1"
-            HeightRequest="300"
-            WidthRequest="300"
-            Series="{Binding ScatterSeries}"
-            ZoomMode="None"
-            XAxes="{Binding XAxes}"
-            YAxes="{Binding YAxes}"
-            AnimationsSpeed="00:00:00.500">
-        </lvc:CartesianChart>
-        
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="270" />
+            <RowDefinition Height="270"/>
+            <RowDefinition Height="270" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+
         <Label
-            x:Name="GForce"
-            Text = "{Binding GforceText}"
-            HorizontalOptions="Center"
-            FontSize="Large">
-        </Label>
+
+            x:Name = "GForceMap1"
+                Text="X-Acceleration Gauge"
+                HorizontalOptions="Center"
+                
+                FontSize="20"
+                Padding="10"
+                Grid.Column="0"
+                Grid.Row="0"
+        />
+
+        <microGauge:MauiGaugeRadial
+                x:Name="Gauge1"
+            
+                Grid.Column="0"
+                Grid.Row="0"
+            
+                Value="15"
+            
+                HorizontalOptions="Center"
+                NeedleBrush="#0088ff"
+                NeedlePivotBrush="#011746"
+                NeedlePivotOutlineBrush="white"
+                HeightRequest="190"
+                WidthRequest="200"
+                MinValue="-2"
+                MaxValue="2"
+                BackingOutlineBrush="#0088ff"
+                BackingBrush ="#011746"
+                BackingStrokeWidth="12"
+                LabelInterval="0.5"
+                LabelFontBrush="White"
+                LabelFontSize="30"
+                LabelFormatString="{}{0:N1}G"
+                ValueFontSize="36"
+                ValueFontBrush="White"
+                ValueFormatString="{}{0:N2}G"
+                TickBrush="Transparent"
+                TickStrokeWidth ="0"
+                MinorTickBrush="Transparent"
+                TickEndExtent ="0"
+                MinorTickStrokeWidth="4.2"
+                NeedleOutlineWidth="2.4"
+                NeedleOutlineBrush="White"
+                NeedleStartWidth="24"
+                NeedleEndWidth="0"
+                NeedlePivotOutlineWidth="6"
+                LabelExtent="0.78"/>
+
+        <Label
+
+    x:Name = "GForceMap2"
+        Text="X-Acceleration Gauge"
+        HorizontalOptions="Center"
         
-    </VerticalStackLayout>
+        FontSize="20"
+        Padding="10"
+        Grid.Column="1"
+        Grid.Row="0"
+            
+/>
 
+        <microGauge:MauiGaugeRadial
+        x:Name="Gauge2"
+    
+        Grid.Column="1"
+        Grid.Row="0"
+    
+        Value="15"
+            
+        NeedleBrush="#0088ff"
+        NeedlePivotBrush="#011746"
+        NeedlePivotOutlineBrush="white"
+        HeightRequest="190"
+        WidthRequest="200"
+        MinValue="-2"
+        MaxValue="2"
+        BackingOutlineBrush="#0088ff"
+        BackingBrush ="#011746"
+        BackingStrokeWidth="12"
+        LabelInterval="0.5"
+        LabelFontBrush="White"
+        LabelFontSize="30"
+        LabelFormatString="{}{0:N1}G"
+        ValueFontSize="36"
+        ValueFontBrush="White"
+        ValueFormatString="{}{0:N2}G"
+        TickBrush="Transparent"
+        TickStrokeWidth ="0"
+        MinorTickBrush="Transparent"
+        TickEndExtent ="0"
+        MinorTickStrokeWidth="4.2"
+        NeedleOutlineWidth="2.4"
+        NeedleOutlineBrush="White"
+        NeedleStartWidth="24"
+        NeedleEndWidth="0"
+        NeedlePivotOutlineWidth="6"
+        LabelExtent="0.78"/>
 
+        <Label
+
+    x:Name = "GForceMap3"
+        Text="X-Acceleration Gauge"
+        HorizontalOptions="Center"
+        
+        FontSize="20"
+        Padding="10"
+        Grid.Column="0"
+        Grid.Row="1"
+/>
+
+        <microGauge:MauiGaugeRadial
+        x:Name="Gauge3"
+    
+        Grid.Column="0"
+        Grid.Row="1"
+    
+        Value="15"
+        NeedleBrush="#0088ff"
+        NeedlePivotBrush="#011746"
+        NeedlePivotOutlineBrush="white"
+        HeightRequest="190"
+        WidthRequest="200"
+        MinValue="-2"
+        MaxValue="2"
+        BackingOutlineBrush="#0088ff"
+        BackingBrush ="#011746"
+        BackingStrokeWidth="12"
+        LabelInterval="0.5"
+        LabelFontBrush="White"
+        LabelFontSize="30"
+        LabelFormatString="{}{0:N1}G"
+        ValueFontSize="36"
+        ValueFontBrush="White"
+        ValueFormatString="{}{0:N2}G"
+        TickBrush="Transparent"
+        TickStrokeWidth ="0"
+        MinorTickBrush="Transparent"
+        TickEndExtent ="0"
+        MinorTickStrokeWidth="4.2"
+        NeedleOutlineWidth="2.4"
+        NeedleOutlineBrush="White"
+        NeedleStartWidth="24"
+        NeedleEndWidth="0"
+        NeedlePivotOutlineWidth="6"
+        LabelExtent="0.78"/>
+
+        <Label
+
+    x:Name = "GForceMap4"
+        Text="X-Acceleration Gauge"
+        HorizontalOptions="Center"
+        
+        FontSize="20"
+        Padding="10"
+        Grid.Column="1"
+        Grid.Row="1"
+/>
+
+        <microGauge:MauiGaugeRadial
+        x:Name="Gauge4"
+    
+        Grid.Column="1"
+        Grid.Row="1"
+    
+        Value="15"
+        NeedleBrush="#0088ff"
+        NeedlePivotBrush="#011746"
+        NeedlePivotOutlineBrush="white"
+        HeightRequest="190"
+        WidthRequest="200"
+        MinValue="-2"
+        MaxValue="2"
+        BackingOutlineBrush="#0088ff"
+        BackingBrush ="#011746"
+        BackingStrokeWidth="12"
+        LabelInterval="0.5"
+        LabelFontBrush="White"
+        LabelFontSize="30"
+        LabelFormatString="{}{0:N1}G"
+        ValueFontSize="36"
+        ValueFontBrush="White"
+        ValueFormatString="{}{0:N2}G"
+        TickBrush="Transparent"
+        TickStrokeWidth ="0"
+        MinorTickBrush="Transparent"
+        TickEndExtent ="0"
+        MinorTickStrokeWidth="4.2"
+        NeedleOutlineWidth="2.4"
+        NeedleOutlineBrush="White"
+        NeedleStartWidth="24"
+        NeedleEndWidth="0"
+        NeedlePivotOutlineWidth="6"
+        LabelExtent="0.78"/>
+
+        <Label
+
+    x:Name = "GForceMap5"
+        Text="X-Acceleration Gauge"
+        HorizontalOptions="Center"
+        
+        FontSize="20"
+        Padding="10"
+        Grid.Column="0"
+        Grid.Row="2"
+/>
+
+        <microGauge:MauiGaugeRadial
+        x:Name="Gauge5"
+    
+        Grid.Column="0"
+        Grid.Row="2"
+    
+        Value="15"
+        NeedleBrush="#0088ff"
+        NeedlePivotBrush="#011746"
+        NeedlePivotOutlineBrush="white"
+        HeightRequest="190"
+        WidthRequest="200"
+        MinValue="-2"
+        MaxValue="2"
+        BackingOutlineBrush="#0088ff"
+        BackingBrush ="#011746"
+        BackingStrokeWidth="12"
+        LabelInterval="0.5"
+        LabelFontBrush="White"
+        LabelFontSize="30"
+        LabelFormatString="{}{0:N1}G"
+        ValueFontSize="36"
+        ValueFontBrush="White"
+        ValueFormatString="{}{0:N2}G"
+        TickBrush="Transparent"
+        TickStrokeWidth ="0"
+        MinorTickBrush="Transparent"
+        TickEndExtent ="0"
+        MinorTickStrokeWidth="4.2"
+        NeedleOutlineWidth="2.4"
+        NeedleOutlineBrush="White"
+        NeedleStartWidth="24"
+        NeedleEndWidth="0"
+        NeedlePivotOutlineWidth="6"
+        LabelExtent="0.78"/>
+
+        <Label
+
+        x:Name = "GForceMap6"
+        Text="X-Acceleration Gauge"
+        HorizontalOptions="Center"
+        
+        FontSize="20"
+        Padding="10"
+        Grid.Column="1"
+        Grid.Row="2"
+/>
+
+        <microGauge:MauiGaugeRadial
+        x:Name="Gauge6"
+    
+        Grid.Column="1"
+        Grid.Row="2"
+    
+        Value="15"
+        NeedleBrush="#0088ff"
+        NeedlePivotBrush="#011746"
+        NeedlePivotOutlineBrush="white"
+        HeightRequest="190"
+        WidthRequest="200"
+        MinValue="-2"
+        MaxValue="2"
+        BackingOutlineBrush="#0088ff"
+        BackingBrush ="#011746"
+        BackingStrokeWidth="12"
+        LabelInterval="0.5"
+        LabelFontBrush="White"
+        LabelFontSize="30"
+        LabelFormatString="{}{0:N1}G"
+        ValueFontSize="36"
+        ValueFontBrush="White"
+        ValueFormatString="{}{0:N2}G"
+        TickBrush="Transparent"
+        TickStrokeWidth ="0"
+        MinorTickBrush="Transparent"
+        TickEndExtent ="0"
+        MinorTickStrokeWidth="4.2"
+        NeedleOutlineWidth="2.4"
+        NeedleOutlineBrush="White"
+        NeedleStartWidth="24"
+        NeedleEndWidth="0"
+        NeedlePivotOutlineWidth="6"
+        LabelExtent="0.78"/>
+
+    </Grid>
 </ContentPage>

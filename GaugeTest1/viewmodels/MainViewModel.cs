@@ -25,11 +25,10 @@ public partial class MainViewModel : ObservableObject
     //creates "overarching data type" for storing the XY coordinates of acceleration data
     //this datatype is an observable collection of observable points. Essentially this means it's an array of 
     //XY coordinates that trigger data binding
-    private static ObservableCollection<ObservablePoint> xyCoordinates = new ObservableCollection<ObservablePoint> (); 
+ 
 
     //Observable property that updates the acceleration lable on the main page
-    [ObservableProperty]
-    string gforceText;
+
 
 
     //creates doubles that store acceleration data whenever the reading changes 
@@ -39,48 +38,11 @@ public partial class MainViewModel : ObservableObject
 
 
     //creates what is essentially an array of arrays of points that populate the acceleration Livechart (wtf C#?)
-    public ISeries[] ScatterSeries { get; set; } = new ISeries[]
-    {
-        new ScatterSeries<ObservablePoint>
-        {
-            Name = "XY Coordinates",
-            Values=xyCoordinates,
-            GeometrySize=2,
-            Fill = new SolidColorPaint(SKColors.Blue),
-            Stroke = new SolidColorPaint(SKColors.Blue) { StrokeThickness = 30 }
 
-        } };
 
     //Creates custom Axes for the livecharts graph
     //These are data bound to the livecharts graph 
-    public Axis[] XAxes { get; set; } = new Axis[]
-    {
-        new Axis
-        {
-            Name = "X Axis",
-            NamePaint = new SolidColorPaint(SKColors.Black),
 
-            LabelsPaint = new SolidColorPaint(SKColors.Blue),
-            TextSize = 10,
-            MaxLimit=1.5,
-            MinLimit=-1.5,
-            SeparatorsPaint = new SolidColorPaint(SKColors.LightSlateGray) { StrokeThickness = 2 }
-        }
-    };
-    public Axis[] YAxes { get; set; } = new Axis[]
-    {
-        new Axis
-        {
-            Name = "Y Axis",
-            NamePaint = new SolidColorPaint(SKColors.Black),
-
-            LabelsPaint = new SolidColorPaint(SKColors.Blue),
-            TextSize = 10,
-            MaxLimit=1.5,
-            MinLimit=-1.5,
-            SeparatorsPaint = new SolidColorPaint(SKColors.LightSlateGray) { StrokeThickness = 2 }
-        }
-    };
 
     //Start the accelerometer
     public MainViewModel()
@@ -114,18 +76,6 @@ public partial class MainViewModel : ObservableObject
     //this function updates the acceleration data and does the following: 
     private void OnAccelerometerReadingChanged(object sender, AccelerometerChangedEventArgs e)
     {
-        //creates a new observable point and appends it to the "overarching data type" described above
-        xyCoordinates.Add (new ObservablePoint (e.Reading.Acceleration.X, e.Reading.Acceleration.Y)); 
-        //This if-statement determines the number of points on the graph, or in other words, the amount of "trail" the graph has
-        if (xyCoordinates.Count >= 10) //if the number of ObservablePoints in the "Overarching data type" is >= 10:
-        {
-            //remove the first element
-            xyCoordinates.RemoveAt(0); 
-            //an ObservableCollection automatically shifts the rest of the data set down one index to fill the empty space which is handy. 
-        }
-        //update the label on the mainpage that shows raw acceleration data
-        GforceText = $"X: {e.Reading.Acceleration.X:F2}, Y: {e.Reading.Acceleration.Y:F2}, Z: {e.Reading.Acceleration.Z:F2}"; 
-        //updates the above double values to contain the most recent acceleration data
         accelerationX = e.Reading.Acceleration.X; 
         accelerationY = e.Reading.Acceleration.Y;
         accelerationZ = e.Reading.Acceleration.Z;
