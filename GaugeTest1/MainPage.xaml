@@ -15,7 +15,8 @@
 
 
 
-    <Grid>
+    <Grid ColumnSpacing="11">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="270" />
             <RowDefinition Height="270"/>
@@ -24,6 +25,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
+            
         </Grid.ColumnDefinitions>
 
 

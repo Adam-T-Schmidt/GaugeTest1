@@ -63,10 +63,10 @@ namespace GaugeTest1
             //RadialGauge.Value = accValues [0];
             Gauge1.Value = accValues [0];
             Gauge2.Value = accValues[0];
-            Gauge3.Value = accValues[0];
-            Gauge4.Value = accValues[0];
-            Gauge5.Value = accValues[0];
-            Gauge6.Value = accValues[0];
+            Gauge3.Value = accValues[1];
+            Gauge4.Value = accValues[1];
+            Gauge5.Value = accValues[2];
+            Gauge6.Value = accValues[2];
 
 
         }
