@@ -49,6 +49,7 @@ public partial class MainViewModel : ObservableObject
             Stroke = new SolidColorPaint(SKColors.Blue) { StrokeThickness = 30 }
 
         } };
+
     //Creates custom Axes for the livecharts graph
     //These are data bound to the livecharts graph 
     public Axis[] XAxes { get; set; } = new Axis[]
@@ -96,6 +97,7 @@ public partial class MainViewModel : ObservableObject
         accelerationValues[2] = (float)accelerationZ;
         return accelerationValues; 
     }
+
     //the title is pretty self explanatory 
     private void StartAccelerometer()
     {
