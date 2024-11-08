@@ -50,8 +50,9 @@
     <!--<ContentView>-->
         <microcharts:ChartView x:Name="chartView" 
                                 
-                               HeightRequest="300" 
-                               WidthRequest="300" />
+                               HeightRequest="400" 
+                               WidthRequest="400" 
+                               />
         <lvc:CartesianChart Grid.Row ="1"
                             HeightRequest="300"
                             WidthRequest="300"

@@ -82,25 +82,10 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     string gforceText;
 
+    double accelerationX;
+    double accelerationY;
+    double accelerationZ; 
 
-    [ObservableProperty]
-    ChartEntry[] entries = new ChartEntry[]
-{
-
-            new ChartEntry (210)
-            {
-                Label = "Windows",
-                ValueLabel = "210",
-                Color = SKColor.Parse("#2c3e50")
-            },
-                        new ChartEntry (210)
-            {
-                Label = "Mac",
-                ValueLabel = "220",
-                Color = SKColor.Parse("#2c3e60")
-            }
-
-};
 
 
 
@@ -112,12 +97,24 @@ public partial class MainViewModel : ObservableObject
     public MainViewModel()
     {
         StartAccelerometer ();
-
+        
 
 
 
 
     }
+
+
+    public float[] getAccelerationValues()
+    {
+        //Console.WriteLine ("getAccelerationValues() Called");
+        float[] accelerationValues = new float[3];
+        accelerationValues[0] = (float)accelerationX; 
+        accelerationValues[1] = (float)accelerationY;
+        accelerationValues[2] = (float)accelerationZ;
+        return accelerationValues; 
+    }
+
 
     private void StartAccelerometer()
     {
@@ -132,7 +129,7 @@ public partial class MainViewModel : ObservableObject
 
     private void OnAccelerometerReadingChanged(object sender, AccelerometerChangedEventArgs e)
     {
-        Console.WriteLine(xyCoordinates.Count);
+        //Console.WriteLine(xyCoordinates.Count);
         //xyCoordinates.Clear();
         xyCoordinates.Add (new ObservablePoint (e.Reading.Acceleration.X, e.Reading.Acceleration.Y));
         if (xyCoordinates.Count >= 10)
@@ -140,12 +137,12 @@ public partial class MainViewModel : ObservableObject
             xyCoordinates.RemoveAt(0);
         }
         GforceText = $"X: {e.Reading.Acceleration.X:F2}, Y: {e.Reading.Acceleration.Y:F2}, Z: {e.Reading.Acceleration.Z:F2}";
+        accelerationX = e.Reading.Acceleration.X; 
+        accelerationY = e.Reading.Acceleration.Y;
+        accelerationZ = e.Reading.Acceleration.Z;
     }
 
-    private void createEntriesFromNewAccelerationData(double X, double Y, double Z)
-    {
 
-    }
 
 
     private void StopAccelerometer()
